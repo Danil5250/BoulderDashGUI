@@ -1,6 +1,8 @@
-﻿namespace BoulderDash.Forms
+﻿using System.Windows.Forms;
+
+namespace BoulderDash.Forms
 {
-    partial class GameField
+    partial class FieldGameForm
     {
         /// <summary>
         /// Required designer variable.

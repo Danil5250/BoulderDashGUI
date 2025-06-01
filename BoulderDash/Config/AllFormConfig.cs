@@ -9,6 +9,6 @@ namespace BoulderDash.Config
     internal static class AllFormConfig
     {
         //shift form at y position at 100 px higher
-        internal const int YCenterOffset = 100;
+        internal static readonly int YCenterOffset = 100;
     }
 }

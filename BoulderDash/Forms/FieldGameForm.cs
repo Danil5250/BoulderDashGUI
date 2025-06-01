@@ -1,5 +1,4 @@
 ﻿using BoulderDash.Utils;
-using BoulderDashCore.GameObjects.Base;
 using BoulderDashCore.GameObjects.Managers;
 using BoulderDashCore.Managers.InputManagers;
 using System;
@@ -10,15 +9,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace BoulderDash.Forms
 {
-    public partial class GameField : Form
+    public partial class FieldGameForm: Form
     {
         private readonly GameManager _game;
         private readonly InputManager _inputManager;
@@ -28,7 +25,7 @@ namespace BoulderDash.Forms
 
         public bool GameEndMBOpened { get; set; }
 
-        public GameField(GameManager game, InputManager inputManager)
+        public FieldGameForm(GameManager game, InputManager inputManager)
         {
             _game = game;
             _inputManager = inputManager;
@@ -290,7 +287,7 @@ namespace BoulderDash.Forms
                 DenyGameEvents();
                 this.Close();
             }
-            
+
         }
         private void GameOver()
         {
@@ -381,11 +378,12 @@ namespace BoulderDash.Forms
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var currentMB = MessageBox.Show("Are you sure you want to leave the game", "Game end", MessageBoxButtons.OKCancel);
-            if (currentMB.Equals(DialogResult.OK))
+            var currentMB = MessageBox.Show("Are you sure you want to leave the game?", "Game end", MessageBoxButtons.YesNoCancel);
+            if (currentMB.Equals(DialogResult.Yes))
             {
                 this.Close();
             }
         }
     }
 }
+

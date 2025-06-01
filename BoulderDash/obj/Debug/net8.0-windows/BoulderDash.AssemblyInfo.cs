@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BoulderDash")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c94ddd728ad2bd2ecf084bd8f9cc07703bafffcf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BoulderDash")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BoulderDash")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

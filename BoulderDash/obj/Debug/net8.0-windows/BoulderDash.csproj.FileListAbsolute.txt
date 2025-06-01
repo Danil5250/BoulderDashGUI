@@ -3,8 +3,6 @@ F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\bin\Debug\net8.0-windows\Boulde
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\bin\Debug\net8.0-windows\BoulderDashCore.dll
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\bin\Debug\net8.0-windows\BoulderDashCore.pdb
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.csproj.AssemblyReference.cache
-F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Forms.GameField.resources
-F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Menu.resources
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.csproj.GenerateResource.cache
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.GeneratedMSBuildEditorConfig.editorconfig
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.AssemblyInfoInputs.cache
@@ -19,3 +17,7 @@ F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\bin\Debug\net8.0-windows\Boulde
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderD.7EE38FDF.Up2Date
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.genruntimeconfig.cache
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\ref\BoulderDash.dll
+F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Forms.FieldGenerationForm.resources
+F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.sourcelink.json
+F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Forms.FieldGameForm.resources
+F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.MenuForm.resources

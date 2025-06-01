@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace BoulderDash
 {
-    public partial class Menu : Form
+    public partial class MenuForm : Form
     {
         private GameManager _game;
         private InputManager _inputManager;
 
-        public Menu()
+        public MenuForm()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
@@ -31,21 +31,12 @@ namespace BoulderDash
             ShowControls();
             _inputManager = new InputManager();
             _game = new GameManager(_inputManager);
-            GameField gameField = new GameField(_game, _inputManager);
+            FieldGameForm gameField = new FieldGameForm(_game, _inputManager);
             gameField.FormClosed += (s, args) => this.Show();
+
+            gameField.Show();
             gameField.StartPosition = FormStartPosition.Manual;
-
-            Rectangle screen = Screen.PrimaryScreen.WorkingArea;
-            int centerX = screen.Left + (screen.Width - gameField.Width) / 2;
-            int centerY = screen.Top + (screen.Height - gameField.Height) / 2;
-
-            int offsetY = 100;
-
-            gameField.Location = new Point(centerX, centerY - offsetY);
-
-            gameField.Show();
-            gameField.StartPosition = FormStartPosition.CenterScreen;
-            gameField.Show();
+            gameField.Location = FormUtils.GetFormCenterCoordinates(gameField.Width, gameField.Height);
             this.Hide();
         }
 
@@ -64,6 +55,17 @@ namespace BoulderDash
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnCreateOwnField_Click(object sender, EventArgs e)
+        {
+            FieldGenerationForm generateFieldForm = new FieldGenerationForm();
+            generateFieldForm.FormClosed += (s, args) => this.Show();
+
+            generateFieldForm.Show();
+            generateFieldForm.StartPosition = FormStartPosition.Manual;
+            generateFieldForm.Location = FormUtils.GetFormCenterCoordinates(generateFieldForm.Width, generateFieldForm.Height);
+            this.Hide();
         }
     }
 }
