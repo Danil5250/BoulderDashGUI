@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             gbFieldConfig = new GroupBox();
+            tbMapName = new TextBox();
+            lbMapName = new Label();
             lbHeight = new Label();
             tbHeight = new TextBox();
             lbWidth = new Label();
@@ -55,6 +57,8 @@
             // gbFieldConfig
             // 
             gbFieldConfig.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gbFieldConfig.Controls.Add(tbMapName);
+            gbFieldConfig.Controls.Add(lbMapName);
             gbFieldConfig.Controls.Add(lbHeight);
             gbFieldConfig.Controls.Add(tbHeight);
             gbFieldConfig.Controls.Add(lbWidth);
@@ -66,10 +70,27 @@
             gbFieldConfig.TabStop = false;
             gbFieldConfig.Text = "FieldConfig";
             // 
+            // tbMapName
+            // 
+            tbMapName.Location = new Point(89, 27);
+            tbMapName.Name = "tbMapName";
+            tbMapName.Size = new Size(225, 23);
+            tbMapName.TabIndex = 6;
+            tbMapName.Leave += tbMapName_TextChanged;
+            // 
+            // lbMapName
+            // 
+            lbMapName.AutoSize = true;
+            lbMapName.Location = new Point(7, 30);
+            lbMapName.Name = "lbMapName";
+            lbMapName.Size = new Size(64, 15);
+            lbMapName.TabIndex = 5;
+            lbMapName.Text = "Map name";
+            // 
             // lbHeight
             // 
             lbHeight.AutoSize = true;
-            lbHeight.Location = new Point(444, 30);
+            lbHeight.Location = new Point(565, 30);
             lbHeight.Name = "lbHeight";
             lbHeight.Size = new Size(43, 15);
             lbHeight.TabIndex = 4;
@@ -77,9 +98,9 @@
             // 
             // tbHeight
             // 
-            tbHeight.Location = new Point(507, 27);
+            tbHeight.Location = new Point(628, 27);
             tbHeight.Name = "tbHeight";
-            tbHeight.Size = new Size(213, 23);
+            tbHeight.Size = new Size(100, 23);
             tbHeight.TabIndex = 3;
             tbHeight.Text = "10";
             tbHeight.TextChanged += UpdateFieldSize;
@@ -87,7 +108,7 @@
             // lbWidth
             // 
             lbWidth.AutoSize = true;
-            lbWidth.Location = new Point(40, 30);
+            lbWidth.Location = new Point(355, 30);
             lbWidth.Name = "lbWidth";
             lbWidth.Size = new Size(39, 15);
             lbWidth.TabIndex = 2;
@@ -95,9 +116,9 @@
             // 
             // tbWidth
             // 
-            tbWidth.Location = new Point(103, 27);
+            tbWidth.Location = new Point(418, 27);
             tbWidth.Name = "tbWidth";
-            tbWidth.Size = new Size(225, 23);
+            tbWidth.Size = new Size(100, 23);
             tbWidth.TabIndex = 0;
             tbWidth.Text = "10";
             tbWidth.TextChanged += UpdateFieldSize;
@@ -236,9 +257,11 @@
             Controls.Add(gbFieldItems);
             Controls.Add(gbFieldConfig);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "FieldGenerationForm";
-            Text = "FieldGenerationForm";
+            Text = " Form Creation";
             FormClosing += FieldGenerationForm_FormClosing;
             gbFieldConfig.ResumeLayout(false);
             gbFieldConfig.PerformLayout();
@@ -271,5 +294,7 @@
         private ToolStripMenuItem mapUtilitiesToolStripMenuItem;
         private ToolStripMenuItem fillEmptySpaceWithSandToolStripMenuItem;
         private ToolStripMenuItem clearToolStripMenuItem;
+        private TextBox tbMapName;
+        private Label lbMapName;
     }
 }

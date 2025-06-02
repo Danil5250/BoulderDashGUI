@@ -98,6 +98,7 @@
             btnPlayInOwnField.TabIndex = 3;
             btnPlayInOwnField.Text = "Play in my own map";
             btnPlayInOwnField.UseVisualStyleBackColor = true;
+            btnPlayInOwnField.Click += btnPlayInOwnField_Click;
             // 
             // menuStrip
             // 

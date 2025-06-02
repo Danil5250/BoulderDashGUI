@@ -1,0 +1,11 @@
+Width:10|Height:10
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|diamond|sand|sand
+sand|sand|player|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|enemy
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand
+sand|sand|sand|sand|sand|sand|sand|sand|sand|sand

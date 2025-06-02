@@ -1,0 +1,3 @@
+Width:3|Height:2
+player|diamond|diamond
+sand|stone|enemy

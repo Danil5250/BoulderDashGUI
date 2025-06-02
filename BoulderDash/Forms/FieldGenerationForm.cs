@@ -1,4 +1,6 @@
 ﻿using BoulderDash.Config;
+using BoulderDashCore.GameObjects.Managers;
+using BoulderDashCore.Utils.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +17,6 @@ namespace BoulderDash.Forms
     public partial class FieldGenerationForm : Form
     {
         private string[][] fieldMatrix;
-        //private string selectedTool = "";
         private Point? dragStartPoint = null; //init point of cells drag&drop
         public FieldGenerationForm()
         {
@@ -60,7 +61,7 @@ namespace BoulderDash.Forms
                         BorderStyle = BorderStyle.FixedSingle,
                         Tag = new Point(x, y),
                         BackColor = GenerateFormConfig.GetCellColor(fieldMatrix[y][x]),
-                        Text = fieldMatrix[y][x],
+                        Text = GenerateFormConfig.FullToShortName(fieldMatrix[y][x]),
                         ForeColor = GenerateFormConfig.ItemsDefaultColor
                     };
 
@@ -76,16 +77,15 @@ namespace BoulderDash.Forms
 
         private void SetupEventHandlers()
         {
-            lbStone.MouseDown += (s, e) => StartDrag("S");
-            lbSand.MouseDown += (s, e) => StartDrag(".");
-            lbPlayer.MouseDown += (s, e) => StartDrag("P");
-            lbDiamond.MouseDown += (s, e) => StartDrag("D");
-            lbEnemy.MouseDown += (s, e) => StartDrag("E");
+            lbStone.MouseDown += (s, e) => StartDrag(GenerateFormConfig.StoneFullName);
+            lbSand.MouseDown += (s, e) => StartDrag(GenerateFormConfig.SandFullName);
+            lbPlayer.MouseDown += (s, e) => StartDrag(GenerateFormConfig.PlayerFullName);
+            lbDiamond.MouseDown += (s, e) => StartDrag(GenerateFormConfig.DiamondFullName);
+            lbEnemy.MouseDown += (s, e) => StartDrag(GenerateFormConfig.EnemyFullName);
         }
 
         private void StartDrag(string tool)
         {
-            //selectedTool = tool;
             //clear
             dragStartPoint = null;
             //start drag and drop operation
@@ -120,7 +120,6 @@ namespace BoulderDash.Forms
             else if (e.Button == MouseButtons.Left && !string.IsNullOrEmpty(fieldMatrix[pos.Y][pos.X]))
             {
                 dragStartPoint = pos;
-                //selectedTool = fieldMatrix[pos.Y][pos.X];
                 cell.DoDragDrop(fieldMatrix[pos.Y][pos.X], DragDropEffects.Move);
             }
         }
@@ -164,7 +163,7 @@ namespace BoulderDash.Forms
                     //set element at another cell
                     fieldMatrix[targetPos.Y][targetPos.X] = draggedItem;
                     cell.BackColor = GenerateFormConfig.GetCellColor(draggedItem);
-                    cell.Text = draggedItem;
+                    cell.Text = GenerateFormConfig.FullToShortName(draggedItem); //draggedItem;
                 }
             }
             else
@@ -172,7 +171,7 @@ namespace BoulderDash.Forms
                 //we are adding a new element from label
                 fieldMatrix[targetPos.Y][targetPos.X] = draggedItem;
                 cell.BackColor = GenerateFormConfig.GetCellColor(draggedItem);
-                cell.Text = draggedItem;
+                cell.Text = GenerateFormConfig.FullToShortName(draggedItem); //draggedItem;
             }
 
             dragStartPoint = null;
@@ -185,7 +184,7 @@ namespace BoulderDash.Forms
             {
                 if (control is Label cell && cell.Tag is Point pos && pos == position)
                 {
-                    cell.Text = fieldMatrix[position.Y][position.X];
+                    cell.Text = GenerateFormConfig.FullToShortName(fieldMatrix[position.Y][position.X]); // fieldMatrix[position.Y][position.X];
                     cell.BackColor = GenerateFormConfig.GetCellColor(fieldMatrix[position.Y][position.X]);
                     break;
                 }
@@ -194,9 +193,57 @@ namespace BoulderDash.Forms
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(tbMapName.Text))
+                    throw new FileFieldException("Map name cannot be empty");
 
+                FileManager.IsMapNameUnique(tbMapName.Text);
+
+                //string[] fieldRows = FileManager.BuildCompressedMap(fieldMatrix);
+                //string[] resultField = new string[fieldMatrix.Length + 1];
+
+                var resultField = FileManager.BuildCompressedMap(fieldMatrix);
+
+                resultField[0] = $"Width:{fieldMatrix[0].Length}{GenerateFormConfig.ElementsSeparator}Height:{fieldMatrix.Length}\n";
+
+                SaveField(resultField);
+            }
+            catch (FileFieldException ex)
+            {
+                MessageBox.Show(ex.Message, "Field error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
         }
 
+        private void SaveField(string[] resultField)
+        {
+            FileManager.FieldValidation(resultField, fieldMatrix[0].Length);
+
+            var result = FileManager.UserGeneratesMap(tbMapName.Text, resultField,
+                fieldMatrix[0].Length, fieldMatrix.Length);
+
+            MessageBox.Show(result, "Field generation", MessageBoxButtons.OKCancel);
+            var mbResult = MessageBox.Show("Do you want to clear the field", "Field", MessageBoxButtons.YesNoCancel);
+            if (mbResult.Equals(DialogResult.Yes))
+            {
+                SetDefaultValues();
+                ResetMap();
+            }
+        }
+
+        private void SetDefaultValues()
+        {
+            tbMapName.Text = "";
+            tbWidth.Text = GenerateFormConfig.DefaultFieldWidth;
+            tbHeight.Text = GenerateFormConfig.DefaultFieldHeight;
+            RedrawField();
+        }
 
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,7 +266,7 @@ namespace BoulderDash.Forms
                 "Quit field creating", MessageBoxButtons.YesNoCancel);
         }
 
-        
+
 
         private void fillEmptySpaceWithSandToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -230,7 +277,7 @@ namespace BoulderDash.Forms
                 {
                     if (fieldMatrix[y][x] == "")
                     {
-                        fieldMatrix[y][x] = GenerateFormConfig.SandView;
+                        fieldMatrix[y][x] = GenerateFormConfig.SandFullName;
                         UpdateCell(new Point(x, y));
                     }
                 }
@@ -238,6 +285,11 @@ namespace BoulderDash.Forms
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResetMap();
+        }
+
+        private void ResetMap()
         {
             //here I modify full map
             for (int y = 0; y < fieldMatrix.Length; y++)
@@ -250,6 +302,20 @@ namespace BoulderDash.Forms
             RedrawField();
         }
 
-        
+        //Validations
+        private void tbMapName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                FileManager.IsMapNameUnique(tbMapName.Text);
+            }
+            catch (FileFieldException ex)
+            {
+                MessageBox.Show(ex.Message, "Field errors", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }

@@ -7,6 +7,9 @@
     <Compile Update="Forms\FieldGenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\helpForms\GetFileFieldForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>

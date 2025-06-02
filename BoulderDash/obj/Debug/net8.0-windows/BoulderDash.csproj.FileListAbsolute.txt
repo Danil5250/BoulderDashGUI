@@ -21,3 +21,4 @@ F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\Boulde
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.sourcelink.json
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Forms.FieldGameForm.resources
 F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.MenuForm.resources
+F:\Nure\1\2\oop\labs\gui\BoulderDash\BoulderDash\obj\Debug\net8.0-windows\BoulderDash.Forms.helpForms.GetFileFieldForm.resources
