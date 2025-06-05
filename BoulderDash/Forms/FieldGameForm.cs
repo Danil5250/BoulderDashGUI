@@ -19,7 +19,7 @@ namespace BoulderDash.Forms
     {
         private readonly GameManager _game;
         private readonly InputManager _inputManager;
-        private readonly bool _isGameActive = true;
+        private bool _isGameActive = true;
         private System.Windows.Forms.Timer _renderTimer;
         private Bitmap _backBuffer;
 
@@ -33,6 +33,7 @@ namespace BoulderDash.Forms
             this.DoubleBuffered = true;
 
             InitializeComponent();
+            ApplyStyles();
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -175,8 +176,10 @@ namespace BoulderDash.Forms
             {
                 GameEndMBOpened = true;
                 _renderTimer?.Stop();
+                _renderTimer?.Dispose();
                 MessageBox.Show(text, text, MessageBoxButtons.OK);
                 DenyGameEvents();
+                _isGameActive = false;
                 this.Close();
             }
 
@@ -255,18 +258,35 @@ namespace BoulderDash.Forms
 
         private void GameField_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _renderTimer?.Stop();
-            _renderTimer?.Dispose();
+            if (_isGameActive)
+            {
+                var currentMB = MessageBox.Show("Are you sure you want to leave the game?", "Game end", MessageBoxButtons.YesNoCancel);
+                if (!currentMB.Equals(DialogResult.Yes))
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    _renderTimer?.Stop();
+                    _renderTimer?.Dispose();
+                    DenyGameEvents();
+                    _game?.StopAllProcesses();
+                }
+            }
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var currentMB = MessageBox.Show("Are you sure you want to leave the game?", "Game end", MessageBoxButtons.YesNoCancel);
-            if (currentMB.Equals(DialogResult.Yes))
-            {
-                this.Close();
-            }
+            this.Close();
         }
+
+        #region Style
+        private void ApplyStyles()
+        {
+            infoPanel.BackColor = Color.FromArgb(230, 240, 255);
+        }
+        #endregion Style
     }
 }
 

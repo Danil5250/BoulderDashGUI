@@ -32,12 +32,14 @@
             btnRndField = new Button();
             btnCreateOwnField = new Button();
             gBControlButtons = new GroupBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
             btnPlayInOwnField = new Button();
             menuStrip = new MenuStrip();
             stripMenuGame = new ToolStripMenuItem();
             stripMenuItemExit = new ToolStripMenuItem();
             layout = new FlowLayoutPanel();
             gBControlButtons.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,44 +47,56 @@
             // 
             lblBoulderDash.AutoSize = true;
             lblBoulderDash.Dock = DockStyle.Top;
-            lblBoulderDash.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
+            lblBoulderDash.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
             lblBoulderDash.ForeColor = Color.MidnightBlue;
             lblBoulderDash.Location = new Point(0, 24);
             lblBoulderDash.Name = "lblBoulderDash";
             lblBoulderDash.Padding = new Padding(0, 20, 0, 10);
-            lblBoulderDash.Size = new Size(230, 77);
+            lblBoulderDash.Size = new Size(251, 81);
             lblBoulderDash.TabIndex = 0;
             lblBoulderDash.Text = "BoulderDash";
-            lblBoulderDash.TextAlign = ContentAlignment.MiddleCenter;
+            lblBoulderDash.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnRndField
             // 
-            btnRndField.Location = new Point(83, 22);
+            btnRndField.BackColor = Color.SteelBlue;
+            btnRndField.FlatAppearance.BorderSize = 0;
+            btnRndField.FlatAppearance.MouseDownBackColor = Color.DodgerBlue;
+            btnRndField.FlatAppearance.MouseOverBackColor = Color.LightSkyBlue;
+            btnRndField.FlatStyle = FlatStyle.Flat;
+            btnRndField.ForeColor = Color.White;
+            btnRndField.Location = new Point(20, 20);
+            btnRndField.Margin = new Padding(10);
             btnRndField.Name = "btnRndField";
-            btnRndField.Size = new Size(198, 33);
+            btnRndField.Size = new Size(220, 40);
             btnRndField.TabIndex = 1;
             btnRndField.Text = "Start playing in random field";
-            btnRndField.UseVisualStyleBackColor = true;
+            btnRndField.UseVisualStyleBackColor = false;
             btnRndField.Click += btnRndField_Click;
             // 
             // btnCreateOwnField
             // 
-            btnCreateOwnField.Location = new Point(83, 104);
+            btnCreateOwnField.BackColor = Color.SteelBlue;
+            btnCreateOwnField.FlatAppearance.BorderSize = 0;
+            btnCreateOwnField.FlatAppearance.MouseDownBackColor = Color.DodgerBlue;
+            btnCreateOwnField.FlatAppearance.MouseOverBackColor = Color.LightSkyBlue;
+            btnCreateOwnField.FlatStyle = FlatStyle.Flat;
+            btnCreateOwnField.ForeColor = Color.White;
+            btnCreateOwnField.Location = new Point(20, 90);
+            btnCreateOwnField.Margin = new Padding(10);
             btnCreateOwnField.Name = "btnCreateOwnField";
-            btnCreateOwnField.Size = new Size(198, 33);
+            btnCreateOwnField.Size = new Size(220, 40);
             btnCreateOwnField.TabIndex = 2;
             btnCreateOwnField.Text = "Create my own map";
-            btnCreateOwnField.UseVisualStyleBackColor = true;
+            btnCreateOwnField.UseVisualStyleBackColor = false;
             btnCreateOwnField.Click += btnCreateOwnField_Click;
             // 
             // gBControlButtons
             // 
             gBControlButtons.BackColor = Color.WhiteSmoke;
-            gBControlButtons.Controls.Add(btnPlayInOwnField);
-            gBControlButtons.Controls.Add(btnRndField);
-            gBControlButtons.Controls.Add(btnCreateOwnField);
+            gBControlButtons.Controls.Add(tableLayoutPanel1);
             gBControlButtons.FlatStyle = FlatStyle.Flat;
-            gBControlButtons.Font = new Font("Segoe UI", 10F);
+            gBControlButtons.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             gBControlButtons.Location = new Point(12, 104);
             gBControlButtons.Name = "gBControlButtons";
             gBControlButtons.Size = new Size(352, 259);
@@ -90,14 +104,41 @@
             gBControlButtons.TabStop = false;
             gBControlButtons.Text = "Select Mode";
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(btnPlayInOwnField, 0, 2);
+            tableLayoutPanel1.Controls.Add(btnRndField, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnCreateOwnField, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 21);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new Padding(10);
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 34F));
+            tableLayoutPanel1.Size = new Size(346, 235);
+            tableLayoutPanel1.TabIndex = 4;
+            // 
             // btnPlayInOwnField
             // 
-            btnPlayInOwnField.Location = new Point(83, 190);
+            btnPlayInOwnField.BackColor = Color.SteelBlue;
+            btnPlayInOwnField.FlatAppearance.BorderSize = 0;
+            btnPlayInOwnField.FlatAppearance.MouseDownBackColor = Color.DodgerBlue;
+            btnPlayInOwnField.FlatAppearance.MouseOverBackColor = Color.LightSkyBlue;
+            btnPlayInOwnField.FlatStyle = FlatStyle.Flat;
+            btnPlayInOwnField.ForeColor = Color.White;
+            btnPlayInOwnField.Location = new Point(20, 160);
+            btnPlayInOwnField.Margin = new Padding(10);
             btnPlayInOwnField.Name = "btnPlayInOwnField";
-            btnPlayInOwnField.Size = new Size(198, 28);
+            btnPlayInOwnField.Size = new Size(220, 40);
             btnPlayInOwnField.TabIndex = 3;
             btnPlayInOwnField.Text = "Play in my own map";
-            btnPlayInOwnField.UseVisualStyleBackColor = true;
+            btnPlayInOwnField.UseVisualStyleBackColor = false;
             btnPlayInOwnField.Click += btnPlayInOwnField_Click;
             // 
             // menuStrip
@@ -139,7 +180,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(376, 375);
             Controls.Add(gBControlButtons);
             Controls.Add(lblBoulderDash);
@@ -151,6 +192,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu";
             gBControlButtons.ResumeLayout(false);
+            gBControlButtons.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             ResumeLayout(false);
@@ -158,21 +201,6 @@
         }
 
         #endregion
-
-        #region Style
-
-        void StyleButton(Button btn)
-        {
-            btn.BackColor = Color.SteelBlue;
-            btn.ForeColor = Color.White;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btn.FlatAppearance.BorderSize = 0;
-            btn.Height = 40;
-            btn.Width = 220;
-            btn.Margin = new Padding(10);
-        }
-        #endregion Style
 
         private Label lblBoulderDash;
         private Button btnRndField;
@@ -183,5 +211,6 @@
         private ToolStripMenuItem stripMenuGame;
         private ToolStripMenuItem stripMenuItemExit;
         private FlowLayoutPanel layout;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

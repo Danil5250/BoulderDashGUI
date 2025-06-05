@@ -6,7 +6,6 @@ using BoulderDashCore.GameObjects.Characters;
 using BoulderDashCore.GameObjects.Managers;
 using BoulderDashCore.Managers.InputManagers;
 using BoulderDashCore.Utils.FunctionResults.GetField;
-using System.Windows.Forms;
 
 namespace BoulderDash
 {
@@ -18,6 +17,8 @@ namespace BoulderDash
         public MenuForm()
         {
             InitializeComponent();
+            ApplyStyles();
+
             this.StartPosition = FormStartPosition.Manual;
 
             //Best fits because works when first form appearing, and next form appearings
@@ -143,5 +144,13 @@ namespace BoulderDash
             _inputManager = new InputManager();
             _game = new GameManager(_inputManager);
         }
+
+
+        #region Style
+        private void ApplyStyles()
+        {
+            gBControlButtons.BackColor = Color.FromArgb(240, 240, 255);
+        }
+        #endregion Style
     }
 }

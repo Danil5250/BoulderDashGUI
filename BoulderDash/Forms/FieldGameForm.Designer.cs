@@ -60,51 +60,67 @@ namespace BoulderDash.Forms
             // lblBombUsed
             // 
             lblBombUsed.AutoSize = true;
+            lblBombUsed.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblBombUsed.ForeColor = Color.MidnightBlue;
             lblBombUsed.Location = new Point(447, 21);
+            lblBombUsed.Margin = new Padding(10, 0, 10, 0);
             lblBombUsed.Name = "lblBombUsed";
-            lblBombUsed.Size = new Size(67, 15);
+            lblBombUsed.Size = new Size(55, 20);
             lblBombUsed.TabIndex = 9;
-            lblBombUsed.Text = "Bomb used";
+            lblBombUsed.Text = "Bomb:";
             // 
             // lblJumps
             // 
             lblJumps.AutoSize = true;
+            lblJumps.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblJumps.ForeColor = Color.MidnightBlue;
             lblJumps.Location = new Point(343, 22);
+            lblJumps.Margin = new Padding(10, 0, 10, 0);
             lblJumps.Name = "lblJumps";
-            lblJumps.Size = new Size(41, 15);
+            lblJumps.Size = new Size(59, 20);
             lblJumps.TabIndex = 8;
-            lblJumps.Text = "Jumps";
+            lblJumps.Text = "Jumps:";
             // 
             // lblStoneMoves
             // 
             lblStoneMoves.AutoSize = true;
+            lblStoneMoves.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblStoneMoves.ForeColor = Color.MidnightBlue;
             lblStoneMoves.Location = new Point(202, 23);
+            lblStoneMoves.Margin = new Padding(10, 0, 10, 0);
             lblStoneMoves.Name = "lblStoneMoves";
-            lblStoneMoves.Size = new Size(78, 15);
+            lblStoneMoves.Size = new Size(103, 20);
             lblStoneMoves.TabIndex = 7;
             lblStoneMoves.Text = "StoneMoves: ";
             // 
             // lblLives
             // 
             lblLives.AutoSize = true;
+            lblLives.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblLives.ForeColor = Color.MidnightBlue;
             lblLives.Location = new Point(107, 22);
+            lblLives.Margin = new Padding(10, 0, 10, 0);
             lblLives.Name = "lblLives";
-            lblLives.Size = new Size(39, 15);
+            lblLives.Size = new Size(52, 20);
             lblLives.TabIndex = 6;
             lblLives.Text = "Lives: ";
             // 
             // lblScore
             // 
             lblScore.AutoSize = true;
+            lblScore.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblScore.ForeColor = Color.MidnightBlue;
             lblScore.Location = new Point(12, 23);
+            lblScore.Margin = new Padding(10, 0, 10, 0);
             lblScore.Name = "lblScore";
-            lblScore.Size = new Size(42, 15);
+            lblScore.Size = new Size(55, 20);
             lblScore.TabIndex = 5;
             lblScore.Text = "Score: ";
             // 
             // panelPlay
             // 
             panelPlay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelPlay.BackColor = Color.WhiteSmoke;
             panelPlay.Location = new Point(0, 27);
             panelPlay.Name = "panelPlay";
             panelPlay.Padding = new Padding(1);
@@ -128,10 +144,11 @@ namespace BoulderDash.Forms
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // GameField
+            // FieldGameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(684, 511);
             Controls.Add(panelPlay);
             Controls.Add(infoPanel);
@@ -139,8 +156,9 @@ namespace BoulderDash.Forms
             DoubleBuffered = true;
             KeyPreview = true;
             MaximumSize = new Size(1000, 720);
+            MinimizeBox = false;
             MinimumSize = new Size(700, 550);
-            Name = "GameField";
+            Name = "FieldGameForm";
             Text = "BoulderDash";
             FormClosing += GameField_FormClosing;
             KeyDown += GameField_KeyDown;

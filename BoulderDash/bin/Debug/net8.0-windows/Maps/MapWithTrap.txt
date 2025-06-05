@@ -1,0 +1,8 @@
+Width:5|Height:7
+stone|stone|stone|stone|stone
+stone|sand|stone|diamond|stone
+stone|sand|sand|stone|sand
+stone|sand|stone|sand|stone
+stone|stone|sand|stone|stone
+stone|stone|player|stone|stone
+stone|stone|stone|stone|stone

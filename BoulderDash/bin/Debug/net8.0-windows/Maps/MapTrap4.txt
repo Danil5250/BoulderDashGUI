@@ -1,0 +1,7 @@
+Width:3|Height:6
+sand|stone|diamond
+sand|stone|sand
+player|sand|stone
+stone|sand|stone
+stone|sand|stone
+stone|stone|stone
