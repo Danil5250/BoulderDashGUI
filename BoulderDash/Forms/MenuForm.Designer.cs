@@ -49,7 +49,7 @@
             lblBoulderDash.Dock = DockStyle.Top;
             lblBoulderDash.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
             lblBoulderDash.ForeColor = Color.MidnightBlue;
-            lblBoulderDash.Location = new Point(0, 24);
+            lblBoulderDash.Location = new Point(0, 27);
             lblBoulderDash.Name = "lblBoulderDash";
             lblBoulderDash.Padding = new Padding(0, 20, 0, 10);
             lblBoulderDash.Size = new Size(251, 81);
@@ -143,10 +143,12 @@
             // 
             // menuStrip
             // 
+            menuStrip.BackColor = Color.Gainsboro;
+            menuStrip.Font = new Font("Segoe UI", 10F);
             menuStrip.Items.AddRange(new ToolStripItem[] { stripMenuGame });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(376, 24);
+            menuStrip.Size = new Size(376, 27);
             menuStrip.TabIndex = 4;
             menuStrip.Text = "menuStrip";
             // 
@@ -154,14 +156,14 @@
             // 
             stripMenuGame.DropDownItems.AddRange(new ToolStripItem[] { stripMenuItemExit });
             stripMenuGame.Name = "stripMenuGame";
-            stripMenuGame.Size = new Size(50, 20);
+            stripMenuGame.Size = new Size(57, 23);
             stripMenuGame.Text = "Game";
             // 
             // stripMenuItemExit
             // 
             stripMenuItemExit.Name = "stripMenuItemExit";
             stripMenuItemExit.ShortcutKeys = Keys.Control | Keys.Q;
-            stripMenuItemExit.Size = new Size(136, 22);
+            stripMenuItemExit.Size = new Size(151, 24);
             stripMenuItemExit.Text = "Exit";
             stripMenuItemExit.Click += exitToolStripMenuItem_Click;
             // 

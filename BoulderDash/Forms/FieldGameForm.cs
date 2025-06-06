@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace BoulderDash.Forms
 {
-    public partial class FieldGameForm: Form
+    public partial class FieldGameForm : Form
     {
         private readonly GameManager _game;
         private readonly InputManager _inputManager;
@@ -59,34 +59,48 @@ namespace BoulderDash.Forms
 
         private void CreateBackBuffer()
         {
-            if (panelPlay.ClientSize.Width <= 0 || panelPlay.ClientSize.Height <= 0)
-                return;
-            _backBuffer?.Dispose();
-            _backBuffer = new Bitmap(
-                panelPlay.ClientSize.Width,
-                panelPlay.ClientSize.Height
-            );
+            //when the game is finnishing some game elements can address to them and the error can appear
+            try
+            {
+                if (panelPlay.ClientSize.Width <= 0 || panelPlay.ClientSize.Height <= 0)
+                    return;
+                _backBuffer?.Dispose();
+                _backBuffer = new Bitmap(
+                    panelPlay.ClientSize.Width,
+                    panelPlay.ClientSize.Height
+                );
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void RenderGameField()
         {
             if (this.IsDisposed || !this.IsHandleCreated) return;
 
-            if (_backBuffer == null || _game == null)
-                return;
-
-            using (var g = Graphics.FromImage(_backBuffer))
+            try
             {
-                g.Clear(Color.Black);
-                DrawGameField(g);
+                if (_backBuffer == null || _game == null)
+                    return;
+
+                using (var g = Graphics.FromImage(_backBuffer))
+                {
+                    g.Clear(Color.Black);
+                    DrawGameField(g);
+                }
+
+                this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                {
+                    panelPlay.Invalidate();
+                    UpdateGameInfo();
+                });
             }
-
-            this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+            catch (Exception)
             {
-                panelPlay.Invalidate();
-                UpdateGameInfo();
-            });
+            }
         }
+
         private void DrawGameField(Graphics g)
         {
             lock (_game.FieldLock)
@@ -216,16 +230,16 @@ namespace BoulderDash.Forms
             lblBombUsed.Text = $"Bombs used: {_game.Player.BombsUsed}";
         }
 
-        private void infoPanel_Paint(object sender, PaintEventArgs e)
-        {
-            if (_backBuffer != null)
-            {
-                e.Graphics.DrawImage(
-                    _backBuffer,
-                    Point.Empty
-                );
-            }
-        }
+        //private void infoPanel_Paint(object sender, PaintEventArgs e)
+        //{
+        //    if (_backBuffer != null)
+        //    {
+        //        e.Graphics.DrawImage(
+        //            _backBuffer,
+        //            Point.Empty
+        //        );
+        //    }
+        //}
 
         private void panelPlay_Paint(object sender, PaintEventArgs e)
         {
@@ -256,24 +270,26 @@ namespace BoulderDash.Forms
             }
         }
 
-        private void GameField_FormClosing(object sender, FormClosingEventArgs e)
+        private async void GameField_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_isGameActive)
             {
+                _game?.PauseGame();
                 var currentMB = MessageBox.Show("Are you sure you want to leave the game?", "Game end", MessageBoxButtons.YesNoCancel);
                 if (!currentMB.Equals(DialogResult.Yes))
                 {
                     e.Cancel = true;
+                    _game?.ResumeGame();
                 }
                 else
                 {
                     _renderTimer?.Stop();
                     _renderTimer?.Dispose();
                     DenyGameEvents();
-                    _game?.StopAllProcesses();
+                    await _game?.StopAllProcessesAsync();
                 }
             }
-            
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -287,6 +303,24 @@ namespace BoulderDash.Forms
             infoPanel.BackColor = Color.FromArgb(230, 240, 255);
         }
         #endregion Style
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _game?.PauseGame();
+            ChangePauseResumeItemsStatus(false, true);
+        }
+
+        private void ChangePauseResumeItemsStatus(bool pauseVisible, bool resumeVisible)
+        {
+            pauseMenuItem.Enabled = pauseVisible;
+            resumeMenuItem.Enabled = resumeVisible;
+        }
+
+        private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _game?.ResumeGame();
+            ChangePauseResumeItemsStatus(true, false);
+        }
     }
 }
 

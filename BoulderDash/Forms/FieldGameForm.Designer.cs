@@ -30,7 +30,6 @@ namespace BoulderDash.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            infoPanel = new Panel();
             lblBombUsed = new Label();
             lblJumps = new Label();
             lblStoneMoves = new Label();
@@ -39,30 +38,19 @@ namespace BoulderDash.Forms
             panelPlay = new Panel();
             menuStrip1 = new MenuStrip();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            infoPanel.SuspendLayout();
+            pauseMenuItem = new ToolStripMenuItem();
+            resumeMenuItem = new ToolStripMenuItem();
+            infoPanel = new TableLayoutPanel();
             menuStrip1.SuspendLayout();
+            infoPanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // infoPanel
-            // 
-            infoPanel.Controls.Add(lblBombUsed);
-            infoPanel.Controls.Add(lblJumps);
-            infoPanel.Controls.Add(lblStoneMoves);
-            infoPanel.Controls.Add(lblLives);
-            infoPanel.Controls.Add(lblScore);
-            infoPanel.Dock = DockStyle.Bottom;
-            infoPanel.Location = new Point(0, 449);
-            infoPanel.Name = "infoPanel";
-            infoPanel.Size = new Size(684, 62);
-            infoPanel.TabIndex = 0;
-            infoPanel.Paint += infoPanel_Paint;
             // 
             // lblBombUsed
             // 
             lblBombUsed.AutoSize = true;
-            lblBombUsed.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblBombUsed.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblBombUsed.ForeColor = Color.MidnightBlue;
-            lblBombUsed.Location = new Point(447, 21);
+            lblBombUsed.Location = new Point(554, 0);
             lblBombUsed.Margin = new Padding(10, 0, 10, 0);
             lblBombUsed.Name = "lblBombUsed";
             lblBombUsed.Size = new Size(55, 20);
@@ -72,9 +60,9 @@ namespace BoulderDash.Forms
             // lblJumps
             // 
             lblJumps.AutoSize = true;
-            lblJumps.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblJumps.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblJumps.ForeColor = Color.MidnightBlue;
-            lblJumps.Location = new Point(343, 22);
+            lblJumps.Location = new Point(418, 0);
             lblJumps.Margin = new Padding(10, 0, 10, 0);
             lblJumps.Name = "lblJumps";
             lblJumps.Size = new Size(59, 20);
@@ -84,9 +72,9 @@ namespace BoulderDash.Forms
             // lblStoneMoves
             // 
             lblStoneMoves.AutoSize = true;
-            lblStoneMoves.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblStoneMoves.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblStoneMoves.ForeColor = Color.MidnightBlue;
-            lblStoneMoves.Location = new Point(202, 23);
+            lblStoneMoves.Location = new Point(282, 0);
             lblStoneMoves.Margin = new Padding(10, 0, 10, 0);
             lblStoneMoves.Name = "lblStoneMoves";
             lblStoneMoves.Size = new Size(103, 20);
@@ -96,9 +84,9 @@ namespace BoulderDash.Forms
             // lblLives
             // 
             lblLives.AutoSize = true;
-            lblLives.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblLives.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblLives.ForeColor = Color.MidnightBlue;
-            lblLives.Location = new Point(107, 22);
+            lblLives.Location = new Point(146, 0);
             lblLives.Margin = new Padding(10, 0, 10, 0);
             lblLives.Name = "lblLives";
             lblLives.Size = new Size(52, 20);
@@ -108,9 +96,9 @@ namespace BoulderDash.Forms
             // lblScore
             // 
             lblScore.AutoSize = true;
-            lblScore.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblScore.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
             lblScore.ForeColor = Color.MidnightBlue;
-            lblScore.Location = new Point(12, 23);
+            lblScore.Location = new Point(10, 0);
             lblScore.Margin = new Padding(10, 0, 10, 0);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(55, 20);
@@ -121,28 +109,69 @@ namespace BoulderDash.Forms
             // 
             panelPlay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPlay.BackColor = Color.WhiteSmoke;
+            panelPlay.BorderStyle = BorderStyle.FixedSingle;
             panelPlay.Location = new Point(0, 27);
             panelPlay.Name = "panelPlay";
-            panelPlay.Padding = new Padding(1);
-            panelPlay.Size = new Size(684, 404);
+            panelPlay.Padding = new Padding(5);
+            panelPlay.Size = new Size(684, 422);
             panelPlay.TabIndex = 1;
             panelPlay.Paint += panelPlay_Paint;
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
+            menuStrip1.BackColor = Color.Gainsboro;
+            menuStrip1.Font = new Font("Segoe UI", 10F);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { exitToolStripMenuItem, pauseMenuItem, resumeMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(684, 24);
+            menuStrip1.Size = new Size(684, 27);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(38, 20);
+            exitToolStripMenuItem.Size = new Size(42, 23);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // pauseMenuItem
+            // 
+            pauseMenuItem.Name = "pauseMenuItem";
+            pauseMenuItem.Size = new Size(57, 23);
+            pauseMenuItem.Text = "Pause";
+            pauseMenuItem.Click += pauseToolStripMenuItem_Click;
+            // 
+            // resumeMenuItem
+            // 
+            resumeMenuItem.Enabled = false;
+            resumeMenuItem.Name = "resumeMenuItem";
+            resumeMenuItem.Size = new Size(69, 23);
+            resumeMenuItem.Text = "Resume";
+            resumeMenuItem.Click += resumeToolStripMenuItem_Click;
+            // 
+            // infoPanel
+            // 
+            infoPanel.BackColor = Color.WhiteSmoke;
+            infoPanel.ColumnCount = 5;
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            infoPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            infoPanel.Controls.Add(lblBombUsed, 4, 0);
+            infoPanel.Controls.Add(lblJumps, 3, 0);
+            infoPanel.Controls.Add(lblStoneMoves, 2, 0);
+            infoPanel.Controls.Add(lblLives, 1, 0);
+            infoPanel.Controls.Add(lblScore, 0, 0);
+            infoPanel.Dock = DockStyle.Bottom;
+            infoPanel.Location = new Point(0, 455);
+            infoPanel.Name = "infoPanel";
+            infoPanel.RowCount = 1;
+            infoPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            infoPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            infoPanel.Size = new Size(684, 56);
+            infoPanel.TabIndex = 0;
             // 
             // FieldGameForm
             // 
@@ -150,8 +179,8 @@ namespace BoulderDash.Forms
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(684, 511);
-            Controls.Add(panelPlay);
             Controls.Add(infoPanel);
+            Controls.Add(panelPlay);
             Controls.Add(menuStrip1);
             DoubleBuffered = true;
             KeyPreview = true;
@@ -162,17 +191,16 @@ namespace BoulderDash.Forms
             Text = "BoulderDash";
             FormClosing += GameField_FormClosing;
             KeyDown += GameField_KeyDown;
-            infoPanel.ResumeLayout(false);
-            infoPanel.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            infoPanel.ResumeLayout(false);
+            infoPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Panel infoPanel;
         private Label lblLives;
         private Label lblScore;
         private Label lblBombUsed;
@@ -181,5 +209,8 @@ namespace BoulderDash.Forms
         private Panel panelPlay;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem pauseMenuItem;
+        private ToolStripMenuItem resumeMenuItem;
+        private TableLayoutPanel infoPanel;
     }
 }
